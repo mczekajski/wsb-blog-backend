@@ -1,11 +1,9 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const app = express();
-let cors = require("cors");
 let port = process.env.PORT || 80;
 
 app.use(express.json());
-app.use(cors());
 app.set('trust proxy', 1);
 
 const users = [{ name: "Name" }];
