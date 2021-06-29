@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const app = express();
-const port = 3000;
+let port = process.env.PORT || 80;
 
 app.use(express.json());
 
