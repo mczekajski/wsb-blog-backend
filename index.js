@@ -4,6 +4,8 @@ const app = express();
 let port = process.env.PORT || 80;
 
 app.use(express.json());
+app.use(cors());
+app.set('trust proxy', 1);
 
 const users = [{ name: "Name" }];
 
