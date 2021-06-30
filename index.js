@@ -1,16 +1,29 @@
+require('dotenv').config()
+
 const express = require("express");
-const bcrypt = require("bcrypt");
 const app = express();
-let port = process.env.PORT || 80;
+const mongoose = require('mongoose')
+const bcrypt = require("bcrypt");
+const port = process.env.PORT || 80;
+
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connection;
+db.on('error', error => console.error(error))
+db.once('open', () => console.log('Connected to Database'))
 
 app.use(express.json());
+
 app.set('trust proxy', 1);
 
 const users = [{ name: "Name" }];
 
+const postsRouter = require('./routes/posts')
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
+
+app.use("/posts", postsRouter)
 
 app.get("/users", (req, res) => {
   res.json(users);

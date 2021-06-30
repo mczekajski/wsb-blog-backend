@@ -19,3 +19,7 @@ Content-Type: application/json
     "name": "Kyle",
     "password": "password"
 }
+
+###
+
+GET http://localhost:80/posts
