@@ -17,10 +17,6 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  id: {
-    type: Number,
-    required: true,
-  },
 });
 
 const Post = mongoose.model('Post', postSchema);
