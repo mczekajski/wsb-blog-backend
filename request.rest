@@ -3,3 +3,12 @@ GET http://localhost:80/posts
 ###
 
 GET http://localhost:80/posts/60db7f3a7b19de45bca4956c
+
+###
+
+PATCH http://localhost:80/posts/60db7f3a7b19de45bca4956c
+Content-Type: application/json
+
+{
+    "postTitle": "Let's test it!"
+}

@@ -15,7 +15,7 @@ const postSchema = new mongoose.Schema({
   },
   lastEditDate: {
     type: String,
-    required: true,
+    required: false,
   },
 });
 
