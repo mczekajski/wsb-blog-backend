@@ -1,4 +1,4 @@
-// require('dotenv').config()
+require('dotenv').config()
 
 const express = require("express");
 const app = express();
@@ -6,12 +6,9 @@ const mongoose = require('mongoose')
 const bcrypt = require("bcrypt");
 const port = process.env.PORT || 80;
 
-async function connectToDatabase() {
-  await mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
-}
+let db;
 
-connectToDatabase();
-const db = mongoose.connection;
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true }).then(db = mongoose.connection);
 db.on('error', error => console.error(error))
 db.once('open', () => console.log('Connected to Database'))
 
