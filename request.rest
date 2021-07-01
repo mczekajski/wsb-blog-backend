@@ -12,3 +12,7 @@ Content-Type: application/json
 {
     "postTitle": "Let's test it!"
 }
+
+###
+
+GET https://wsb-blog-backend.herokuapp.com/posts

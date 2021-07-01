@@ -6,10 +6,14 @@ const mongoose = require('mongoose')
 const bcrypt = require("bcrypt");
 const port = process.env.PORT || 80;
 
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
-const db = mongoose.connection;
-db.on('error', error => console.error(error))
-db.once('open', () => console.log('Connected to Database'))
+async function connect() {
+  await mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+  const db = mongoose.connection;
+  db.on('error', error => console.error(error))
+  db.once('open', () => console.log('Connected to Database'))
+}
+
+connect();
 
 app.use(express.json());
 
