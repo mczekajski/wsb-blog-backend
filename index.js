@@ -2,6 +2,7 @@
 
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const mongoose = require('mongoose')
 const bcrypt = require("bcrypt");
 const port = process.env.PORT || 80;
@@ -11,6 +12,7 @@ const db = mongoose.connection;
 db.on('error', error => console.error(error))
 db.once('open', () => console.log('Connected to Database'))
 
+app.use(cors())
 app.use(express.json());
 
 app.set('trust proxy', 1);
