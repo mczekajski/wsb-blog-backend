@@ -44,6 +44,7 @@ router.delete('/:id', getPost, async (req, res) => {
     }
 })
 
+// getPost middleware function
 async function getPost(req, res, next) {
     let post;
     try {
