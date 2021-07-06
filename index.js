@@ -1,4 +1,4 @@
-// require('dotenv').config()
+require('dotenv').config()
 
 const express = require("express");
 const app = express();
@@ -19,13 +19,15 @@ app.set('trust proxy', 1);
 
 const users = [{ name: "Name" }];
 
-const postsRouter = require('./routes/posts')
+const authRouter = require('./routes/auth');
+const postsRouter = require('./routes/posts');
+
+app.use("/user", authRouter)
+app.use("/posts", postsRouter)
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Wsb-blog backend works!");
 });
-
-app.use("/posts", postsRouter)
 
 app.get("/users", (req, res) => {
   res.json(users);

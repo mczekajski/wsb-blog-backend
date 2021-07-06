@@ -16,3 +16,7 @@ Content-Type: application/json
 ###
 
 GET https://wsb-blog-backend.herokuapp.com/posts
+
+###
+
+POST http://localhost:80/user/register
