@@ -23,9 +23,9 @@ POST http://localhost:80/user/register
 Content-Type: application/json
 
 {
-    "name": "Matthew",
-    "email": "dedsfv@email.com",
-    "password": "12"
+    "name": "Andy Rhino",
+    "email": "rhino@gmail.com",
+    "password": "rhino1234"
 }
 
 ### 
@@ -35,4 +35,13 @@ Content-Type: application/json
 {
     "name": "Dev Ed",
     "password": "123456"
+}
+
+###
+POST http://localhost:80/user/login
+Content-Type: application/json
+
+{
+    "email": "rhino@gmail.com",
+    "password": "rhino1234"
 }
