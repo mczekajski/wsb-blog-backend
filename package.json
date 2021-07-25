@@ -12,9 +12,11 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "heroku": "^7.56.0",
+    "joi": "^17.4.1",
     "mongoose": "^5.13.0"
   },
   "devDependencies": {

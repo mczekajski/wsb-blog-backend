@@ -1,67 +1,35 @@
 require('dotenv').config()
 
 const express = require("express");
-const app = express();
 const cors = require("cors");
 const mongoose = require('mongoose')
 const bcrypt = require("bcrypt");
+
+const app = express();
 const port = process.env.PORT || 80;
 
+app.use(cors())
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Import Routes
+const authRouter = require('./routes/auth');
+const postsRouter = require('./routes/posts');
+
+// Route Middlewares
+app.use("/user", authRouter)
+app.use("/posts", postsRouter)
+
+// Connect to DB
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection;
 db.on('error', error => console.error(error))
 db.once('open', () => console.log('Connected to Database'))
 
-app.use(cors())
-app.use(express.json());
-
 app.set('trust proxy', 1);
-
-const users = [{ name: "Name" }];
-
-const authRouter = require('./routes/auth');
-const postsRouter = require('./routes/posts');
-
-app.use("/user", authRouter)
-app.use("/posts", postsRouter)
 
 app.get("/", (req, res) => {
   res.send("Wsb-blog backend works!");
-});
-
-app.get("/users", (req, res) => {
-  res.json(users);
-  console.log("Get users req");
-});
-
-app.post("/users", async (req, res) => {
-  try {
-    const salt = await bcrypt.genSalt();
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
-    console.log(salt);
-    console.log(hashedPassword);
-    const user = { name: req.body.name, password: hashedPassword };
-    users.push(user);
-    res.status(201).send();
-  } catch {
-    res.status(500).send();
-  }
-});
-
-app.post("/users/login", async (req, res) => {
-  const user = users.find((user) => (user.name == req.body.name));
-  if (user == null) {
-    return res.status(400).send("Cannot find user");
-  }
-  try {
-    if (await bcrypt.compare(req.body.password, user.password)) {
-      res.send("Success");
-    } else {
-      res.send("Not allowed");
-    }
-  } catch {
-    res.status(500).send();
-  }
 });
 
 app.listen(port, () => {
