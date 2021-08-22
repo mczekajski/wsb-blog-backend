@@ -18,6 +18,16 @@ router.get('/:id', getPost, (req, res) => {
     res.json(res.post)
 })
 
+// Adding post
+router.post('/', verify, async (req, res) => {
+    try {
+        const newPost = await new Post(req.body);
+        newPost.save().then(data => res.json(data));
+    } catch (err) {
+        res.status(400).json({ message: err.message })
+    }
+})
+
 // Updating post
 router.patch('/:id', [getPost, verify], async (req, res) => {
     if (req.body.postTitle != null) {
