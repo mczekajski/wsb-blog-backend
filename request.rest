@@ -2,11 +2,11 @@ GET http://localhost:80/posts
 
 ###
 
-GET http://localhost:80/posts/60db7f3a7b19de45bca4956c
+GET http://localhost:80/posts/60db7f3a7b19de45bca49568
 
 ###
 
-PATCH https://wsb-blog-backend.herokuapp.com/posts/60db7f3a7b19de45bca4956c
+PATCH http://localhost:80/posts/60db7f3a7b19de45bca49568
 Content-Type: application/json
 
 {
@@ -15,7 +15,11 @@ Content-Type: application/json
 
 ###
 
-GET https://wsb-blog-backend.herokuapp.com/posts
+DELETE http://localhost:80/posts/60db7f3a7b19de45bca49568
+
+###
+
+GET http://wsb-blog-backend.herokuapp.com/posts
 
 ###
 
@@ -33,11 +37,11 @@ POST http://localhost:80/user/login
 Content-Type: application/json
 
 {
-    "name": "Dev Ed",
-    "password": "123456"
+    "email": "rhino@gmail.com",
+    "password": "rhino1234"
 }
 
-###
+### LOGIN
 POST http://localhost:80/user/login
 Content-Type: application/json
 

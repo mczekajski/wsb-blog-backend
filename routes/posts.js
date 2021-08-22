@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const verify = require('./verifyToken');
 const Post = require('../models/post');
 
 // Getting all posts
@@ -18,7 +19,7 @@ router.get('/:id', getPost, (req, res) => {
 })
 
 // Updating post
-router.patch('/:id', getPost, async (req, res) => {
+router.patch('/:id', [getPost, verify], async (req, res) => {
     if (req.body.postTitle != null) {
         res.post.postTitle = req.body.postTitle;
     }
@@ -35,7 +36,7 @@ router.patch('/:id', getPost, async (req, res) => {
 })
 
 // Deleting post
-router.delete('/:id', getPost, async (req, res) => {
+router.delete('/:id', [getPost, verify], async (req, res) => {
     try {
         await res.post.remove();
         res.json({ message: 'Post deleted' });
