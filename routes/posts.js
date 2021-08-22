@@ -6,7 +6,7 @@ const Post = require('../models/post');
 // Getting all posts
 router.get('/', async (req, res) => {
     try {
-        const posts = await Post.find();
+        const posts = await Post.find().sort('-postDate');
         res.status(200).json(posts);
     } catch(err) {
         res.status(500).json({ message: err.message });
